@@ -5,7 +5,7 @@ import java.util.Random;
 public class Graph {
 
 	public static int[][] createGraph(int cities) {
-		Random rnd = new Random();
+		Random r = new Random();
 		int[][] graph = new int[cities][cities];
 
 		for (int i = 0; i < cities; i++) {
@@ -13,13 +13,14 @@ public class Graph {
 				if (i == j) {
 					graph[i][j] = 0;
 				} else {
-					graph[j][i] = graph[i][j] = 1 + rnd.nextInt(9); // verdier mellom 1-9
+					graph[j][i] = graph[i][j] = 1 + r.nextInt(9); // verdier mellom 1-9
 				}
 			}
 		}
 		return graph;
 	}
-
+	
+	
 	public static void printGraph(int[][] g) {
 		String matrix = "";
 		for (int z = 0; z < g.length; z++) {
