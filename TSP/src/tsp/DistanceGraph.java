@@ -1,26 +1,32 @@
+/**
+ * @author tinarambo
+ * 
+ * Klasse for å generere en 'Weighted Adjacent Matrix' med tilfeldige verdier (weights)
+ * 2D-array der x og y representerer byer, og verdiene avstanden mellom byene
+ */
+
 package tsp;
 
 import java.util.Random;
 
-public class Graph {
+public class DistanceGraph {
 
 	public static int[][] createGraph(int cities) {
 		Random r = new Random();
-		int[][] graph = new int[cities][cities];
+		int[][] distGraph = new int[cities][cities];
 
 		for (int i = 0; i < cities; i++) {
 			for (int j = 0; j < (i + 1); j++) {
 				if (i == j) {
-					graph[i][j] = 0;
+					distGraph[i][j] = 0;
 				} else {
-					graph[j][i] = graph[i][j] = 1 + r.nextInt(9); // verdier mellom 1-9
+					distGraph[j][i] = distGraph[i][j] = 1 + r.nextInt(9); // verdier mellom 1-9
 				}
 			}
 		}
-		return graph;
+		return distGraph;
 	}
-	
-	
+
 	public static void printGraph(int[][] g) {
 		String matrix = "";
 		for (int z = 0; z < g.length; z++) {
