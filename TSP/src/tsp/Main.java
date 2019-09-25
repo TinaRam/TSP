@@ -22,7 +22,7 @@ public class Main {
 		// Initiate the distance graph. (holds 500 cities if nothing else is specified)
 		DistanceGraph g = new DistanceGraph();
 		int[][] d = g.getDistGraph();
-		g.printGraph();
+//		g.printGraph();
 
 		// Initiate array's of cities to visit
 		Cities c = new Cities(d);
