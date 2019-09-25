@@ -7,8 +7,8 @@ import java.util.Arrays;
  * 
  *         Travelling Salesman Problem
  * 
- *         Program creates a graph with distances chosen randomly between 1 and
- *         10. Then generates an initial solution using the Random Method and
+ *         Program creates a graph with distances chosen randomly between 1-10.
+ *         Then generates an initial solution using the Random Method and
  *         calculates the routes total distance, incl. return to start position.
  */
 public class Main {
