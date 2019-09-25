@@ -1,32 +1,42 @@
 package tsp;
 
+import java.util.Arrays;
+
+/**
+ * @author tinarambo
+ * 
+ *         Travelling Salesman Problem
+ * 
+ *         Program creates a graph with distances chosen randomly between 1 and
+ *         10. Then generates an initial solution using the Random Method and
+ *         calculates the routes total distance, incl. return to start position.
+ */
 public class Main {
 
 	public static void main(String[] args) {
 
-		System.out.println("\n5 cities:");
-		int[][] five = DistanceGraph.createGraph(5);
-		DistanceGraph.printGraph(five);
+		// Number of cities in distance graph and in random route
+		int n = 10000;
 
-		System.out.println(five[2][4]);
+		// Measure elapsed time
+		TimeTracker t = new TimeTracker();
+		t.startTimer();
 
-//		System.out.println("\n50 cities:");
-//		int[][] fifty = Graph.createGraph(50);
-//		Graph.printGraph(fifty);
+		int[][] d = DistanceGraph.createGraph(n);
+//		System.out.println(n + " cities:");
+//		DistanceGraph.printGraph(d);
 
-//		System.out.println("\n100 cities:");
-		int[][] onehundred = DistanceGraph.createGraph(100);
-//		Graph.printGraph(onehundred);
+		RandomMethod r = new RandomMethod();
+		int[] initialRandomMethod = r.generateRandomRoute(n);
+		System.out.println("The random route: " + Arrays.toString(initialRandomMethod));
 
-//		System.out.println("\n 250 cities:");
-		int[][] twofifty = DistanceGraph.createGraph(250);
-//		Graph.printGraph(twofifty);
+		DistanceCalculator c = new DistanceCalculator(d, initialRandomMethod);
+		System.out.println("The total distance is: " + c.getTotalDistance());
 
-//		System.out.println("\n 500 cities:");
-		int[][] fivehundred = DistanceGraph.createGraph(500);
-//		Graph.printGraph(fivehundred);
-
-		System.out.println("Done!");
+		t.stopTimer();
+		System.out.println("\n\n - END - ");
+		System.out.println("Execution time: " + t.getElapsedMs() + " ms");
+//		System.out.println("Execution time: " + t.getFormattedTimeTot()); // Display elapsed time in hh:mm:ss:ms
 	}
 
 }

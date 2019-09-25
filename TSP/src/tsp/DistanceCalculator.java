@@ -1,25 +1,34 @@
 package tsp;
 
 /**
- * @author Rambo Klasse for å regne ut kostnaden til av de ulike rutene
- * 
+ * @author tinarambo Class for
  */
-
 public class DistanceCalculator {
 
 	private int totalDist;
-	private int[][] distance;
+	private int[][] distances;
 	private int[] route;
 
-	public DistanceCalculator(int[][] distGraph, int[] visitedCities) {
-		this.distance = distGraph;
-		this.route = visitedCities;
-		this.totalDist = 0;
+	public DistanceCalculator(int[][] distGraph, int[] route) {
+		this.distances = distGraph;
+		this.route = route;
+		calcRouteWithReturnToStart();
 	}
 
-	private int calcRouteDist() {
+	// Method for calculating the total distance of a route
+	// including the distance returning to the start position
+	private void calcRouteWithReturnToStart() {
+		for (int i = 0; i < route.length; i++) {
+			if (i < route.length - 1) {
+				totalDist += distances[route[i]][route[i + 1]];
+			} else {
+				totalDist += distances[route[i]][route[i - i]];
+			}
+		}
+	}
 
-		return 0;
+	public int getTotalDistance() {
+		return totalDist;
 	}
 
 }

@@ -20,7 +20,7 @@ public class DistanceGraph {
 				if (i == j) {
 					distGraph[i][j] = 0;
 				} else {
-					distGraph[j][i] = distGraph[i][j] = 1 + r.nextInt(9); // verdier mellom 1-9
+					distGraph[j][i] = distGraph[i][j] = 1 + r.nextInt(10); // values between 1 and 10
 				}
 			}
 		}
