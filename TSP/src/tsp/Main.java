@@ -24,6 +24,8 @@ public class Main {
 		int[][] d = g.getDistGraph();
 //		g.printGraph();
 
+		DistanceCalculator dc = new DistanceCalculator(d);
+
 		// Initiate array's of cities to visit
 		Cities c = new Cities(d);
 		int[] c5 = c.getCityArray(5);
@@ -31,14 +33,17 @@ public class Main {
 //		int[] c100 = c.getCityArray(100);
 //		int[] c250 = c.getCityArray(250);
 //		int[] c500 = c.getCityArray(500);
-		System.out.println("City array: " + Arrays.toString(c5));
+		System.out.println("Original city array: " + Arrays.toString(c5));
 
 		RandomMethod r = new RandomMethod();
 		int[] initialRandomMethod = r.getRandomRoute(c5);
-		System.out.println("The random route: " + Arrays.toString(initialRandomMethod));
+		System.out.println("\nThe random route: " + Arrays.toString(initialRandomMethod));
+		System.out.println("Random Method total distance: " + dc.getRouteDistance(initialRandomMethod));
 
-		DistanceCalculator dc = new DistanceCalculator(d);
-		System.out.println("The total distance is: " + dc.getRouteDistance(initialRandomMethod));
+		IterativeRandomMethod ir = new IterativeRandomMethod(d, c5);
+		int[] initialRndIterativeRoute = ir.getIterativeRndRoute();
+		System.out.println("The Iterative Random route: " + Arrays.toString(initialRndIterativeRoute));
+		System.out.println("Iterative Random Method total distance: " + dc.getRouteDistance(initialRndIterativeRoute));
 
 		t.stopTimer();
 		System.out.println("\n\n - END - ");
