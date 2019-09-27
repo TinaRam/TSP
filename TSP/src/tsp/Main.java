@@ -19,32 +19,38 @@ public class Main {
 		TimeTracker t = new TimeTracker();
 		t.startTimer();
 
-		// Initiate the distance graph. (holds 500 cities if nothing else is specified)
-		DistanceGraph g = new DistanceGraph();
-		int[][] d = g.getDistGraph();
+		// Initiate the distance graph. (holds distances 500 cities)
+		DistanceGraph g = DistanceGraph.getInstance();
 //		g.printGraph();
+		int[][] distGraph = g.getDistGraph();
+		String matrix = "";
+		for (int z = 0; z < 5; z++) {
+			for (int y = 0; y < 5; y++)
+				matrix += distGraph[z][y] + " ";
+			matrix += "\n";
+		}
+		System.out.println(matrix);
 
-		DistanceCalculator dc = new DistanceCalculator(d);
+		// Initiate the calculator for calculation of distances
+		Calculator calc = new Calculator(distGraph);
 
-		// Initiate array's of cities to visit
-		Cities c = new Cities(d);
-		int[] c5 = c.getCityArray(5);
-//		int[] c50 = c.getCityArray(50);
-//		int[] c100 = c.getCityArray(100);
-//		int[] c250 = c.getCityArray(250);
-//		int[] c500 = c.getCityArray(500);
-		System.out.println("Original city array: " + Arrays.toString(c5));
+		// Initiate Random Method
+		RandomMethod rm = new RandomMethod();
+		rm.generateRandomRoute(5);
+		int[] c5 = rm.getRandomRoute();
+		int distC5 = calc.getRouteDistance(c5);
+		System.out.println("5 cities Random Method: " + Arrays.toString(c5));
+		System.out.println("5 cities Random route distance: " + distC5);
 
-		RandomMethod r = new RandomMethod();
-		int[] initialRandomMethod = r.getRandomRoute(c5);
-		System.out.println("\nThe random route: " + Arrays.toString(initialRandomMethod));
-		System.out.println("Random Method total distance: " + dc.getRouteDistance(initialRandomMethod));
+		System.out.println();
+		System.out.println();
+		rm.generateRandomRoute(3);
+		int[] c3 = rm.getRandomRoute();
+		int distC3 = calc.getRouteDistance(c3);
+		System.out.println("3 cities Random Method: " + Arrays.toString(c3));
+		System.out.println("3 cities Random route distance: " + distC3);
 
-		IterativeRandomMethod ir = new IterativeRandomMethod(d, c5);
-		int[] initialRndIterativeRoute = ir.getIterativeRndRoute();
-		System.out.println("The Iterative Random route: " + Arrays.toString(initialRndIterativeRoute));
-		System.out.println("Iterative Random Method total distance: " + dc.getRouteDistance(initialRndIterativeRoute));
-
+		//
 		t.stopTimer();
 		System.out.println("\n\n - END - ");
 		System.out.println("Execution time: " + t.getElapsedMs() + " ms");

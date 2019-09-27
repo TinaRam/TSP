@@ -3,6 +3,7 @@
  * 
  * Klasse for å generere en 'Weighted Adjacent Matrix' med tilfeldige verdier (weights)
  * 2D-array der x og y representerer byer, og verdiene avstanden mellom byene.
+ * Implementert med Singleton-design pattern- for å forhindre mer enn en instans av grafen
  */
 
 package tsp;
@@ -13,14 +14,18 @@ public class DistanceGraph {
 
 	private int nrOfCities;
 	private int[][] distGraph;
+	private static DistanceGraph instance = null;
 
-	public DistanceGraph() {
+	private DistanceGraph() {
 		this.nrOfCities = 500;
 		populateGraph();
 	}
 
-	public DistanceGraph(int n) {
-		this.nrOfCities = n;
+	public static DistanceGraph getInstance() {
+		if (instance == null) {
+			instance = new DistanceGraph();
+		}
+		return instance;
 	}
 
 	private void populateGraph() {
