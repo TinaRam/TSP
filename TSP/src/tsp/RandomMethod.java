@@ -6,12 +6,9 @@ public class RandomMethod {
 
 	private int[] randomRoute;
 
-	public void generateRandomRoute(int nrOfCities) {
+	public int[] generateRandomRoute(int nrOfCities) {
 		populateArray(nrOfCities);
 		shuffleCities();
-	}
-
-	public int[] getRandomRoute() {
 		return randomRoute;
 	}
 

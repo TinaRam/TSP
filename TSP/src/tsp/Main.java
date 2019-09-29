@@ -36,20 +36,37 @@ public class Main {
 
 		// Initiate Random Method
 		RandomMethod rm = new RandomMethod();
-		rm.generateRandomRoute(5);
-		int[] c5 = rm.getRandomRoute();
-		int distC5 = calc.getRouteDistance(c5);
-		System.out.println("5 cities Random Method: " + Arrays.toString(c5));
-		System.out.println("5 cities Random route distance: " + distC5);
+		int[] rm5 = rm.generateRandomRoute(5);
+		int drm5 = calc.getRouteDistance(rm5);
+		System.out.println("5 Random Method: " + Arrays.toString(rm5));
+		System.out.println("5 Random route distance: " + drm5);
+
+		System.out.println();
+
+		int[] rm3 = rm.generateRandomRoute(3);
+		int drm3 = calc.getRouteDistance(rm3);
+		System.out.println("3 Random Method: " + Arrays.toString(rm3));
+		System.out.println("3 Random route distance: " + drm3);
 
 		System.out.println();
 		System.out.println();
-		rm.generateRandomRoute(3);
-		int[] c3 = rm.getRandomRoute();
-		int distC3 = calc.getRouteDistance(c3);
-		System.out.println("3 cities Random Method: " + Arrays.toString(c3));
-		System.out.println("3 cities Random route distance: " + distC3);
 
+		// Initiate Iterative Random Method
+		IterativeRandomMethod irm = new IterativeRandomMethod(calc);
+		int[] irm5 = irm.generateIterativeRandomRoute(5, 5); // 5 byer, 5 iterasjoner
+		int dirm5 = irm.getIRMDistance();
+		System.out.println("5 Iterative Random Method: " + Arrays.toString(irm5));
+		System.out.println("5 Iterative Random route distance: " + dirm5);
+
+		System.out.println();
+
+		int[] irm3 = irm.generateIterativeRandomRoute(3, 5); // 3 byer, 5 iterasjoner
+		int dirm3 = irm.getIRMDistance();
+		System.out.println("3 Iterative Random Method: " + Arrays.toString(irm3));
+		System.out.println("3 Iterative Random route distance: " + dirm3);
+
+		System.out.println();
+		System.out.println();
 		//
 		t.stopTimer();
 		System.out.println("\n\n - END - ");
