@@ -20,7 +20,6 @@ public class GreedyImprovement {
 		this.initial = route.clone();
 		this.optimized = route.clone();
 		improveInitial(stop);
-
 		return optimized;
 	}
 
@@ -28,15 +27,8 @@ public class GreedyImprovement {
 		int cur = 0, pre = calc.getRouteDistance(initial);
 
 		while (stop > 0) {
-			System.out.println("optimized FØR shuffle: " + Arrays.toString(optimized));
 			shuffleCities();
 			cur = calc.getRouteDistance(optimized);
-
-			System.out.println("initial: " + Arrays.toString(initial));
-			System.out.println("pre: " + pre);
-			System.out.println("optimized ETTER shuffle: " + Arrays.toString(optimized));
-			System.out.println("cur: " + cur);
-			System.out.println();
 
 			if (pre < cur) { // hvis den nye ruta er dårligere enn den gamle...
 				optimized = initial.clone(); // så tilbakestilles ruta
@@ -49,20 +41,17 @@ public class GreedyImprovement {
 		}
 	}
 
-	// Shuffle the array using the Fisher-Yates Shuffle-algorithm
-	// (complexity O(n))
+	// Select two random cities and shuffle
 	private void shuffleCities() {
 		int n = initial.length;
+		int c1 = 0, c2 = 0;
 		Random r = new Random();
-
-		for (int i = n - 1; i > 0; i--) {
-			int j = r.nextInt(i + 1); // Pick a random index from 0 to i
-
-			// Swap cities[i] with the random index
-			int z = optimized[i];
-			optimized[i] = optimized[j];
-			optimized[j] = z;
+		while (c1 == c2) {
+			c1 = r.nextInt(n);
+			c2 = r.nextInt(n);
 		}
+		int z = optimized[c1];
+		optimized[c1] = optimized[c2];
+		optimized[c2] = z;
 	}
-
 }

@@ -57,7 +57,10 @@ public class Main {
 
 		// Greedy Improvement
 		GreedyImprovement gi = new GreedyImprovement(calc);
-		gi.getGreedyImprovedRoute(rr, 5);
+		int[] gir = gi.getGreedyImprovedRoute(rr, 5);
+		int dgir = calc.getRouteDistance(gir);
+		System.out.println(c + " Greedy Improvement: " + Arrays.toString(gir));
+		System.out.println(c + " Greedy Improvement route distance: " + dgir);
 
 //		// Initiate Iterative Random Method
 //		IterativeRandomMethod irm = new IterativeRandomMethod(calc);
