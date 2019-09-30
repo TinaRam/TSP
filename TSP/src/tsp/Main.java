@@ -78,6 +78,7 @@ public class Main {
 
 		// PHASE TWO
 		System.out.println("PHASE TWO");
+
 		// Greedy Improvement (GI)
 		GreedyImprovement gi = new GreedyImprovement(calc);
 
@@ -106,6 +107,34 @@ public class Main {
 		//
 		System.out.println();
 		System.out.println();
+
+		// Greedy Random (GR)
+		GreedyRandom iGR = new GreedyRandom(calc);
+		double a = 0.9; // acceptance probability
+		int n = 6; // max tries
+
+		// iGR on Random Method
+		int[] igrrr = iGR.getIGreedyRandomRoute(rr, n, a);
+		int digrrr = calc.getRouteDistance(igrrr);
+		System.out.println(c + " Greedy Random (Random Method): " + Arrays.toString(igrrr));
+		System.out.println(c + " Greedy Random (Random Method) route distance: " + digrrr);
+
+		System.out.println();
+
+		// iGR on Iterative Random Method
+		int[] igrir = iGR.getIGreedyRandomRoute(irr, n, a);
+		int digrir = calc.getRouteDistance(igrir);
+		System.out.println(c + " Greedy Random (Iterative Random Method): " + Arrays.toString(igrir));
+		System.out.println(c + " Greedy Random (Iterative Random Method) route distance: " + digrir);
+
+		System.out.println();
+
+		// iGR on Greedy Method
+		int[] igrgr = iGR.getIGreedyRandomRoute(gr, n, a);
+		int digrgr = calc.getRouteDistance(igrgr);
+		System.out.println(c + " Greedy Random (Greedy Method): " + Arrays.toString(igrgr));
+		System.out.println(c + " Greedy Random (Greedy Method) route distance: " + digrgr);
+
 		//
 		t.stopTimer();
 		System.out.println("\n\n - END - ");
