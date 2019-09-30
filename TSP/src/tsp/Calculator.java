@@ -14,6 +14,11 @@ public class Calculator {
 		this.distGraph = distances;
 	}
 
+	// Method returning the distance between 'city a' and 'city b'
+	public int getDistanceToCity(int a, int b) {
+		return distGraph[a][b];
+	}
+
 	// Method for calculating the total distance of a route
 	// including the distance for returning to start position
 	private void calcRouteWithReturnToStart() {
