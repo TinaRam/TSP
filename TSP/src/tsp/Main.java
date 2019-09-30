@@ -55,22 +55,26 @@ public class Main {
 		System.out.println();
 		System.out.println();
 
-		// Initiate Iterative Random Method
-		IterativeRandomMethod irm = new IterativeRandomMethod(calc);
-		int[] irr = irm.generateIterativeRandomRoute(c, 5); // 5 byer, 5 iterasjoner
-		int dirr = irm.getIRMDistance();
-		System.out.println(c + " Iterative Random Method: " + Arrays.toString(irr));
-		System.out.println(c + " Iterative Random route distance: " + dirr);
+		// Greedy Improvement
+		GreedyImprovement gi = new GreedyImprovement(calc);
+		gi.getGreedyImprovedRoute(rr, 5);
 
-		System.out.println();
-		System.out.println();
-
-		// Greedy Method
-		GreedyMethod gm = new GreedyMethod(calc);
-		int[] gr = gm.generateGreedyRoute(c);
-		int dgr = calc.getRouteDistance(gr);
-		System.out.println(c + " Greedy Method: " + Arrays.toString(gr));
-		System.out.println(c + " Greedy route distance: " + dgr);
+//		// Initiate Iterative Random Method
+//		IterativeRandomMethod irm = new IterativeRandomMethod(calc);
+//		int[] irr = irm.generateIterativeRandomRoute(c, 5); // 5 byer, 5 iterasjoner
+//		int dirr = irm.getIRMDistance();
+//		System.out.println(c + " Iterative Random Method: " + Arrays.toString(irr));
+//		System.out.println(c + " Iterative Random route distance: " + dirr);
+//
+//		System.out.println();
+//		System.out.println();
+//
+//		// Greedy Method
+//		GreedyMethod gm = new GreedyMethod(calc);
+//		int[] gr = gm.generateGreedyRoute(c);
+//		int dgr = calc.getRouteDistance(gr);
+//		System.out.println(c + " Greedy Method: " + Arrays.toString(gr));
+//		System.out.println(c + " Greedy route distance: " + dgr);
 
 		System.out.println();
 		System.out.println();
