@@ -17,7 +17,7 @@ public class DistanceGraph {
 	private static DistanceGraph instance = null;
 
 	private DistanceGraph() {
-		this.nrOfCities = 500;
+		this.nrOfCities = 5000;
 		populateGraph();
 	}
 

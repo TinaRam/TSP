@@ -34,7 +34,7 @@ public class GreedyMethod {
 
 		int best = 9999;
 		int curr = 0;
-		@SuppressWarnings("rawtypes")
+
 		Iterator it;
 		int a, b = 0, x = 0;
 
