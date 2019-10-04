@@ -14,19 +14,6 @@ public class DistanceGraph {
 
 	private int nrOfCities;
 	private int[][] distGraph;
-	private static DistanceGraph instance = null;
-
-	private DistanceGraph() {
-		this.nrOfCities = 5000;
-		populateGraph();
-	}
-
-	public static DistanceGraph getInstance() {
-		if (instance == null) {
-			instance = new DistanceGraph();
-		}
-		return instance;
-	}
 
 	private void populateGraph() {
 		Random r = new Random();
@@ -43,7 +30,9 @@ public class DistanceGraph {
 		}
 	}
 
-	public int[][] getDistGraph() {
+	public int[][] getDistGraph(int cities) {
+		nrOfCities = cities;
+		populateGraph();
 		return distGraph;
 	}
 

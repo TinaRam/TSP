@@ -39,16 +39,11 @@ public class TestMultiplier {
 	private double a = 0.9; // acceptance probability - Greedy Random
 	private int tries = 10; // max tries Greedy Random - Greedy Random
 
-	public TestMultiplier() {
-		// Initiate the distance graph. (holds distances 500 cities)
-		distGraph = DistanceGraph.getInstance().getDistGraph();
-		// Initiate the calculator for calculation of distances
-		calc = new Calculator(distGraph);
-	}
-
 	public void runTests(int cities, int runs) {
-		initiateMethods();
 		this.n = cities;
+		distGraph = new DistanceGraph().getDistGraph(n);
+		calc = new Calculator(distGraph);
+		initiateMethods();
 		int z = runs;
 		while (runs > 0) {
 
@@ -72,14 +67,13 @@ public class TestMultiplier {
 			runs--;
 		}
 		System.out.println();
-		
+
 		// LAGE TABELLVISNING
-		// Initial Method      GI			GR
-		// best				    -			-
-		// avg					-			-
-		// SD					-			-
-		
-		
+		// Initial Method GI GR
+		// best - -
+		// avg - -
+		// SD - -
+
 		System.out.println("TEST WITH " + cities + " cities and " + z + " runs:\n");
 		System.out.println("Random Method");
 		System.out.println("Best: " + calc.bestRoute(iRM));

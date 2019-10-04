@@ -4,30 +4,28 @@
  */
 package tsp;
 
+import java.util.Arrays;
+
 public class Test {
 
 	private int[][] distGraph;
 	private Calculator calc;
-	private int n = 0, drm, dirm, dgm;
-	private int[] rm, irm, gm;
+	public static int n = 0, drm, dirm, dgm, dgirm, dgiirm, dgigm, digrrm, digrirm, digrgm;
+	public int[] rm, irm, gm, girm, giirm, gigm, igrrm, igrirm, igrgm;
 
 	// EDIT STOP CRITERIONS
 	private int s = 5; // stop criteria - Iterative Random Method
-	private int stop = 100; // stop criteria - Greedy Improvement
-	private double a = 0.99; // acceptance probability - Greedy Random
-	private int tries = 100; // max tries Greedy Random - Greedy Random
-
-	public Test() {
-		// Initiate the distance graph. (holds distances 500 cities)
-		distGraph = DistanceGraph.getInstance().getDistGraph();
-		// Initiate the calculator for calculation of distances
-		calc = new Calculator(distGraph);
-	}
+	private int stop = 10; // stop criteria - Greedy Improvement
+	private double a = 0.9; // acceptance probability - Greedy Random
+	private int tries = 6; // max tries Greedy Random - Greedy Random
 
 	public void runTest(int nrOfCities) {
 		n = nrOfCities;
+		distGraph = new DistanceGraph().getDistGraph(n);
+		calc = new Calculator(distGraph);
 		iniPhaseOne();
 		iniPhaseTwo();
+		printResults();
 	}
 
 	private void iniPhaseOne() {
@@ -35,24 +33,16 @@ public class Test {
 		RandomMethod randomMethod = new RandomMethod();
 		rm = randomMethod.generateRandomRoute(n);
 		drm = calc.getRouteDistance(rm);
-//		System.out.println(n + " Random Method: " + Arrays.toString(rm));
-		System.out.println(n + " Random Method: " + drm);
 
 		// Iterative Random Method
 		IterativeRandomMethod iterativeRandomMethod = new IterativeRandomMethod(calc);
 		irm = iterativeRandomMethod.generateIterativeRandomRoute(n, s); // byer, iterasjoner
 		dirm = iterativeRandomMethod.getIRMDistance();
-//		System.out.println(n + " Iterative Random Method: " + Arrays.toString(irm));
-		System.out.println(n + " Iterative Random Method: " + dirm);
 
 		// Greedy Method (GM)
 		GreedyMethod greedyMethod = new GreedyMethod(calc);
 		gm = greedyMethod.generateGreedyRoute(n);
 		dgm = calc.getRouteDistance(gm);
-//		System.out.println(n + " Greedy Method: " + Arrays.toString(gm));
-		System.out.println(n + " Greedy Method: " + dgm);
-
-		System.out.println();
 	}
 
 	private void iniPhaseTwo() {
@@ -60,50 +50,31 @@ public class Test {
 		GreedyImprovement greedyImprovement = new GreedyImprovement(calc);
 
 		// GI on Random Method
-		int[] girm = greedyImprovement.getGreedyImprovedRoute(rm, stop);
-		int dgirm = calc.getRouteDistance(girm);
-//		System.out.println(n + " Greedy Improvement (Random Method): " + Arrays.toString(girm));
-		System.out.println(n + " Greedy Improvement (Random Method): " + dgirm);
+		girm = greedyImprovement.getGreedyImprovedRoute(rm, stop);
+		dgirm = calc.getRouteDistance(girm);
 
 		// GI on Iterative Random Method
-		int[] giirm = greedyImprovement.getGreedyImprovedRoute(irm, stop);
-		int dgiirm = calc.getRouteDistance(giirm);
-//		System.out.println(n + " Greedy Improvement (Iterative Random Method): " + Arrays.toString(giirm));
-		System.out.println(n + " Greedy Improvement (Iterative Random Method): " + dgiirm);
+		giirm = greedyImprovement.getGreedyImprovedRoute(irm, stop);
+		dgiirm = calc.getRouteDistance(giirm);
 
 		// GI on Greedy Method
-		int[] gigm = greedyImprovement.getGreedyImprovedRoute(gm, stop);
-		int dgigm = calc.getRouteDistance(gigm);
-//		System.out.println(n + " Greedy Improvement (Greedy Method): " + Arrays.toString(gigm));
-		System.out.println(n + " Greedy Improvement (Greedy Method): " + dgigm);
-
-		System.out.println();
+		gigm = greedyImprovement.getGreedyImprovedRoute(gm, stop);
+		dgigm = calc.getRouteDistance(gigm);
 
 		// Greedy Random (GR)
 		GreedyRandom iGreedyRandom = new GreedyRandom(calc);
 
 		// iGR on Random Method
-		int[] igrrm = iGreedyRandom.getIGreedyRandomRoute(rm, tries, a);
-		int digrrm = calc.getRouteDistance(igrrm);
-//		System.out.println(n + " Greedy Random (Random Method): " + Arrays.toString(igrrm));
-		System.out.println(n + " Greedy Random (Random Method): " + digrrm);
+		igrrm = iGreedyRandom.getIGreedyRandomRoute(rm, tries, a);
+		digrrm = calc.getRouteDistance(igrrm);
 
 		// iGR on Iterative Random Method
-		int[] igrirm = iGreedyRandom.getIGreedyRandomRoute(irm, tries, a);
-		int digrirm = calc.getRouteDistance(igrirm);
-//		System.out.println(n + " Greedy Random (Iterative Random Method): " + Arrays.toString(igrirm));
-		System.out.println(n + " Greedy Random (Iterative Random Method): " + digrirm);
+		igrirm = iGreedyRandom.getIGreedyRandomRoute(irm, tries, a);
+		digrirm = calc.getRouteDistance(igrirm);
 
 		// iGR on Greedy Method
-		int[] igrgm = iGreedyRandom.getIGreedyRandomRoute(gm, tries, a);
-		int digrgm = calc.getRouteDistance(igrgm);
-//		System.out.println(n + " Greedy Random (Greedy Method): " + Arrays.toString(igrgm));
-		System.out.println(n + " Greedy Random (Greedy Method): " + digrgm);
-
-		System.out.println();
-		System.out.println();
-		System.out.println();
-
+		igrgm = iGreedyRandom.getIGreedyRandomRoute(gm, tries, a);
+		digrgm = calc.getRouteDistance(igrgm);
 	}
 
 	public void printSampleGraph(int c) {
@@ -116,6 +87,31 @@ public class Test {
 		}
 		System.out.println("Matrix with " + c + " cities: \n");
 		System.out.println(matrix);
+		System.out.println();
+	}
+
+	private void printResults() {
+		System.out.println();
+		System.out.println(n + " cities:");
+
+		System.out.println("Random Method: " + Arrays.toString(rm) + " --> " + +drm);
+		System.out.println("GI: " + Arrays.toString(girm) + " --> " + +dgirm);
+		System.out.println("GR: " + Arrays.toString(igrrm) + " --> " + +digrrm);
+
+		System.out.println();
+
+		System.out.println("Iterative Random Method: " + Arrays.toString(irm) + " --> " + +dirm);
+		System.out.println("GI: " + Arrays.toString(giirm) + " --> " + +dgiirm);
+		System.out.println("GR: " + Arrays.toString(igrirm) + " --> " + +digrirm);
+
+		System.out.println();
+
+		System.out.println("Greedy Method: " + Arrays.toString(gm) + " --> " + +dgm);
+		System.out.println("GI: " + Arrays.toString(gigm) + " --> " + +dgigm);
+		System.out.println("GR: " + Arrays.toString(igrgm) + " --> " + +digrgm);
+
+		System.out.println();
+		System.out.println();
 		System.out.println();
 	}
 
