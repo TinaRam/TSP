@@ -4,8 +4,6 @@
  */
 package tsp;
 
-import java.util.Arrays;
-
 public class Test {
 
 	private int[][] distGraph;

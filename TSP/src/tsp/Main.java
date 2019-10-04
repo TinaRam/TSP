@@ -13,7 +13,8 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Test test = new Test();
+//		Test test = new Test();
+		TestMultiplier multi = new TestMultiplier();
 
 		// Print a sample of the graph for reference
 //		test.printSampleGraph(5);
@@ -23,15 +24,20 @@ public class Main {
 		TimeTracker t = new TimeTracker();
 		t.startTimer();
 
-		// RUN TEST
-		test.runTest(50);
-		test.runTest(100);
-		test.runTest(250);
-		test.runTest(500);
-		test.runTest(1000);
-		test.runTest(2000);
-		test.runTest(3000);
-		test.runTest(5000);
+		// RUN TEST (cities, runs)
+		multi.runTests(50, 1000);
+		multi.runTests(100, 1000);
+		multi.runTests(250, 1000);
+		multi.runTests(500, 1000);
+
+//		test.runTest(50);
+//		test.runTest(100);
+//		test.runTest(250);
+//		test.runTest(500);
+//		test.runTest(1000);
+//		test.runTest(2000);
+//		test.runTest(3000);
+//		test.runTest(5000);
 
 		//
 		t.stopTimer();
