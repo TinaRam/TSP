@@ -32,10 +32,10 @@ public class GreedyMethod {
 		greedyRoute[0] = start; // legger til første by
 		route.remove(route.get(start)); // markerer den som besøkt
 
-		int best = 9999;
+		int best = 1999999;
 		int curr = 0;
 
-		Iterator it;
+		Iterator<String> it;
 		int a, b = 0, x = 0;
 
 		for (int i = 0; i < nrOfCities - 1; i++) {

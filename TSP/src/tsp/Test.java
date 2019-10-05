@@ -19,9 +19,13 @@ public class Test {
 	private double a = 0.9; // acceptance probability - Greedy Random
 	private int tries = 6; // max tries Greedy Random - Greedy Random
 
+	public Test() {
+		distGraph = new DistanceGraph(500).getDistGraph();
+	}
+
 	public void runTest(int nrOfCities) {
 		n = nrOfCities;
-		distGraph = new DistanceGraph().getDistGraph(n);
+		distGraph = new DistanceGraph(n).getDistGraph();
 		calc = new Calculator(distGraph);
 		iniPhaseOne();
 		iniPhaseTwo();
@@ -90,29 +94,57 @@ public class Test {
 		System.out.println();
 	}
 
+//	private void printResults() {
+//		System.out.println();
+//		System.out.println("### " + n + " cities: ###");
+//		System.out.println("-----------------------------------------");
+//
+//		System.out.println("Random Method: " + drm);
+//		System.out.println("GI: " + dgirm);
+//		System.out.println("GR: " + digrrm);
+//
+//		System.out.println();
+//
+//		System.out.println("Iterative Random Method: " + dirm);
+//		System.out.println("GI: " + dgiirm);
+//		System.out.println("GR: " + digrirm);
+//
+//		System.out.println();
+//
+//		System.out.println("Greedy Method: " + dgm);
+//		System.out.println("GI: " + dgigm);
+//		System.out.println("GR: " + digrgm);
+//
+//		System.out.println();
+//
+//	}
+
+	// Printer tour i tillegg
+	// Kun for testing!
 	private void printResults() {
 		System.out.println();
-		System.out.println("### " + n + " cities: ###");
-		System.out.println("-----------------------------------------");
+		System.out.println(n + " cities:");
+		System.out.println();
+		printSampleGraph(n);
 
-		System.out.println("Random Method: " + drm);
-		System.out.println("GI: " + dgirm);
-		System.out.println("GR: " + digrrm);
+		System.out.println("Random Method: " + Arrays.toString(rm) + " --> " + +drm);
+		System.out.println("GI: " + Arrays.toString(girm) + " --> " + +dgirm);
+		System.out.println("GR: " + Arrays.toString(igrrm) + " --> " + +digrrm);
 
 		System.out.println();
 
-		System.out.println("Iterative Random Method: " + dirm);
-		System.out.println("GI: " + dgiirm);
-		System.out.println("GR: " + digrirm);
+		System.out.println("Iterative Random Method: " + Arrays.toString(irm) + " --> " + +dirm);
+		System.out.println("GI: " + Arrays.toString(giirm) + " --> " + +dgiirm);
+		System.out.println("GR: " + Arrays.toString(igrirm) + " --> " + +digrirm);
 
 		System.out.println();
 
-		System.out.println("Greedy Method: " + dgm);
-		System.out.println("GI: " + dgigm);
-		System.out.println("GR: " + digrgm);
+		System.out.println("Greedy Method: " + Arrays.toString(gm) + " --> " + +dgm);
+		System.out.println("GI: " + Arrays.toString(gigm) + " --> " + +dgigm);
+		System.out.println("GR: " + Arrays.toString(igrgm) + " --> " + +digrgm);
 
 		System.out.println();
-
+		System.out.println();
+		System.out.println();
 	}
-
 }

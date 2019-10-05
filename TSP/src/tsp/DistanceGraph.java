@@ -15,6 +15,12 @@ public class DistanceGraph {
 	private int nrOfCities;
 	private int[][] distGraph;
 
+	public DistanceGraph(int cities) {
+		this.nrOfCities = cities;
+		this.distGraph = new int[nrOfCities][nrOfCities];
+		populateGraph();
+	}
+
 	private void populateGraph() {
 		Random r = new Random();
 		this.distGraph = new int[nrOfCities][nrOfCities];
@@ -30,12 +36,11 @@ public class DistanceGraph {
 		}
 	}
 
-	public int[][] getDistGraph(int cities) {
-		nrOfCities = cities;
-		populateGraph();
+	public int[][] getDistGraph() {
 		return distGraph;
 	}
 
+	// Prints the entire graph
 	// For testing puposes only
 	public void printGraph() {
 		String matrix = "";
@@ -46,4 +51,17 @@ public class DistanceGraph {
 		}
 		System.out.println(matrix);
 	}
+
+	// Print a sample of chosen number of cities
+	public void printSampleGraph(int c) {
+		String matrix = "";
+		for (int z = 0; z < c; z++) {
+			for (int y = 0; y < c; y++)
+				matrix += distGraph[z][y] + " ";
+			matrix += "\n";
+		}
+		System.out.println("Matrix with " + c + " cities: \n");
+		System.out.println(matrix);
+	}
+
 }

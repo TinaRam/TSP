@@ -5,7 +5,6 @@
 package tsp;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class TestMultiplier {
 
@@ -39,9 +38,17 @@ public class TestMultiplier {
 	private double a = 0.9; // acceptance probability - Greedy Random
 	private int tries = 10; // max tries Greedy Random - Greedy Random
 
+	private void initiateMethods() {
+		randomMethod = new RandomMethod();
+		iterativeRandomMethod = new IterativeRandomMethod(calc);
+		greedyMethod = new GreedyMethod(calc);
+		greedyImprovement = new GreedyImprovement(calc);
+		iGreedyRandom = new GreedyRandom(calc);
+	}
+
 	public void runTests(int cities, int runs) {
 		this.n = cities;
-		distGraph = new DistanceGraph().getDistGraph(n);
+		distGraph = new DistanceGraph(n).getDistGraph();
 		calc = new Calculator(distGraph);
 		initiateMethods();
 		int z = runs;
@@ -98,14 +105,6 @@ public class TestMultiplier {
 		System.out.format("SD: %.2f", calc.getSD(iGM));
 		System.out.println();
 		System.out.println();
-	}
-
-	private void initiateMethods() {
-		randomMethod = new RandomMethod();
-		iterativeRandomMethod = new IterativeRandomMethod(calc);
-		greedyMethod = new GreedyMethod(calc);
-		greedyImprovement = new GreedyImprovement(calc);
-		iGreedyRandom = new GreedyRandom(calc);
 	}
 
 //	public void printSampleGraph(int c) {
