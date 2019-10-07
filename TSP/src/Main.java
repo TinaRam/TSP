@@ -8,7 +8,6 @@
  *         the shortest possible route visiting each city once and then
  *         returning to the origin city? "
  */
-import tsp.*;
 
 public class Main {
 
@@ -19,7 +18,10 @@ public class Main {
 		// ########################################
 
 		Tester run = new Tester();
+		run.runTests(50, 1000);
 		run.runTests(100, 1000);
+		run.runTests(250, 1000);
+		run.runTests(500, 1000);
 
 		// ########################################
 		t.stopTimer();

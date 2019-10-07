@@ -1,9 +1,10 @@
+
 /**
  * @author tinarambo
  * 
  */
-package tsp;
 
+import tsp.*;
 import java.util.Arrays;
 
 public class Test {
