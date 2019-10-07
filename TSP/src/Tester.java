@@ -11,9 +11,9 @@ public class Tester {
 
 	// EDIT STOP CRITERIONS
 	private int s = 5; // stop criteria - Iterative Random Method
-	private int stop = 1000; // stop criteria - Greedy Improvement
+	private int stop = 10; // stop criteria - Greedy Improvement
 	private double a = 0.9; // acceptance probability - Greedy Random
-	private int tries = 1000; // max tries Greedy Random - Greedy Random
+	private int tries = 10; // max tries Greedy Random - Greedy Random
 
 	private int cities, runs;
 	private int[][] distGraph;
@@ -39,11 +39,22 @@ public class Tester {
 	private ArrayList<Integer> oGRIRM = new ArrayList<Integer>();
 	private ArrayList<Integer> oGRGM = new ArrayList<Integer>();
 
-	public void runTests(int nrOfCities, int nrOfRuns) {
+	public Tester(int nrOfCities) {
 		this.cities = nrOfCities;
-		this.runs = nrOfRuns;
 		distGraph = new DistanceGraph(cities).getDistGraph();
 		calc = new Calculator(distGraph);
+	}
+
+	public void runTests(int nrOfRuns, int itRanStop, int greedyImproStop, int triesGR, double acceptProb) {
+		this.runs = nrOfRuns;
+		this.s = itRanStop;
+		this.stop = greedyImproStop;
+		this.tries = triesGR;
+		this.a = acceptProb;
+		System.out.println("Iterative Random Stop: " + s);
+		System.out.println("Greedy Impro Stop: " + stop);
+		System.out.println("Greedy Random tries: " + tries);
+		System.out.println("acceptance: " + a);
 		initiateMethods();
 
 		while (nrOfRuns > 0) {
@@ -63,24 +74,33 @@ public class Tester {
 		oGRRM.clear();
 		oGRIRM.clear();
 		oGRGM.clear();
+	}
 
-		// TESTING ONLY
-//		System.out.println("Random array: " + iRM);
-//		System.out.println("Iterative array: " + iIRM);
-//		System.out.println("Greedy array: " + iGM);
-//
-//		System.out.println("GI Random array: " + oGIRM);
-//		System.out.println("GI Iterative array: " + oGIIRM);
-//		System.out.println("GI Greedy array: " + oGIGM);
-//
-//		System.out.println("GR Random array: " + oGRRM);
-//		System.out.println("GR Iterative array: " + oGRIRM);
-//		System.out.println("GR Greedy array: " + oGRGM);
-//
-//		System.out.println();
-//		System.out.println("AVG Random: " + calc.getAverage(iRM));
-//		System.out.println("BEST Random: " + calc.bestRoute(iRM));
-//		System.out.println("SD Random: " + calc.getSD(iRM));
+	public void runTests(int nrOfRuns) {
+		this.runs = nrOfRuns;
+		System.out.println("Iterative Random Stop: " + s);
+		System.out.println("Greedy Impro Stop: " + stop);
+		System.out.println("Greedy Random tries: " + tries);
+		System.out.println("acceptance: " + a);
+		initiateMethods();
+
+		while (nrOfRuns > 0) {
+			runAlgorithms();
+			nrOfRuns--;
+		}
+
+		printResults();
+
+		// empty array's
+		iRM.clear();
+		iIRM.clear();
+		iGM.clear();
+		oGIRM.clear();
+		oGIIRM.clear();
+		oGIGM.clear();
+		oGRRM.clear();
+		oGRIRM.clear();
+		oGRGM.clear();
 	}
 
 	private void printResults() {
@@ -95,7 +115,7 @@ public class Tester {
 
 		System.out.println("IRM--> Best: " + calc.bestRoute(iIRM) + " Avg: " + calc.getAverage(iIRM));
 		System.out.println("GI --> Best: " + calc.bestRoute(oGIIRM) + " Avg: " + calc.getAverage(oGIIRM));
-		System.out.println("GR --> Best: " + calc.bestRoute(oGIIRM) + " Avg: " + calc.getAverage(oGIIRM));
+		System.out.println("GR --> Best: " + calc.bestRoute(oGRIRM) + " Avg: " + calc.getAverage(oGRIRM));
 		System.out.println();
 
 		System.out.println("GM --> Best: " + calc.bestRoute(iGM) + " Avg: " + calc.getAverage(iGM));

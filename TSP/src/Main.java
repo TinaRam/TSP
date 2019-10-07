@@ -17,11 +17,22 @@ public class Main {
 		t.startTimer();
 		// ########################################
 
-		Tester run = new Tester();
-		run.runTests(50, 1000);
-		run.runTests(100, 1000);
-		run.runTests(250, 1000);
-		run.runTests(500, 1000);
+		Tester c50 = new Tester(50);
+		c50.runTests(100);
+//		c50.runTests(nrOfRuns, itRanStop, greedyImproStop, triesGR, acceptProb);
+		c50.runTests(100, 500, 1000, 1000, 0.90);
+
+		Tester c100 = new Tester(100);
+		c100.runTests(100);
+		c100.runTests(100, 500, 1000, 1000, 0.90);
+
+		Tester c250 = new Tester(250);
+		c250.runTests(100);
+		c250.runTests(100, 500, 1000, 1000, 0.90);
+
+		Tester c500 = new Tester(500);
+		c500.runTests(100);
+		c500.runTests(100, 500, 1000, 1000, 0.90);
 
 		// ########################################
 		t.stopTimer();
