@@ -11,9 +11,9 @@ public class Tester {
 
 	// EDIT STOP CRITERIONS
 	private int s = 5; // stop criteria - Iterative Random Method
-	private int stop = 10; // stop criteria - Greedy Improvement
+	private int stop = 1000; // stop criteria - Greedy Improvement
 	private double a = 0.9; // acceptance probability - Greedy Random
-	private int tries = 10; // max tries Greedy Random - Greedy Random
+	private int tries = 1000; // max tries Greedy Random - Greedy Random
 
 	private int cities, runs;
 	private int[][] distGraph;
@@ -43,6 +43,24 @@ public class Tester {
 		this.cities = nrOfCities;
 		distGraph = new DistanceGraph(cities).getDistGraph();
 		calc = new Calculator(distGraph);
+	}
+
+	public void testIRMStopCriteria(int stop) {
+		this.s = stop;
+		iterativeRandomMethod = new IterativeRandomMethod(calc);
+		int nrOfRuns = runs;
+		TimeTracker t = new TimeTracker();
+		t.startTimer();
+		while (nrOfRuns > 0) {
+			int[] irm = iterativeRandomMethod.generateIterativeRandomRoute(cities, s);
+			iIRM.add(calc.getRouteDistance(irm));
+			nrOfRuns--;
+		}
+		System.out.println("s: " + s);
+		System.out.println("IRM--> Best: " + calc.bestRoute(iIRM) + " Avg: " + calc.getAverage(iIRM));
+		t.stopTimer();
+		System.out.println("Execution time: " + t.getElapsedMs() + " ms " + " ( " + t.getFormattedTimeTot() + " )");
+		iIRM.clear();
 	}
 
 	public void runTests(int nrOfRuns, int itRanStop, int greedyImproStop, int triesGR, double acceptProb) {
@@ -123,7 +141,7 @@ public class Tester {
 		System.out.println("GR --> Best: " + calc.bestRoute(oGRGM) + " Avg: " + calc.getAverage(oGRGM));
 
 		System.out.println();
-		System.out.println("---------------------------------------");
+		System.out.println("- - - - - - - - - - - - - - - - - - - -");
 	}
 
 	private void initiateMethods() {
