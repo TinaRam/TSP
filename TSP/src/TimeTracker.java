@@ -2,7 +2,7 @@
  * @author tinarambo
  * Class for measuring elapsed time
  */
-package tsp;
+
 
 import java.time.Duration;
 import java.time.Instant;

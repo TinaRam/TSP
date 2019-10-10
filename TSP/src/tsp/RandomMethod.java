@@ -2,42 +2,37 @@ package tsp;
 
 import java.util.Random;
 
-/**
- * @author tinarambo
- *
- *         Klasse for å generere en tilfeldig rute.
- */
-
 public class RandomMethod {
 
-	private int[] randRoute;
+	private int[] randomRoute;
 
 	public int[] generateRandomRoute(int nrOfCities) {
-		populateAnArray(nrOfCities);
-		shuffleCities(randRoute);
-		return randRoute;
+		populateArray(nrOfCities);
+		shuffleCities();
+		return randomRoute;
 	}
 
 	// Populate an int array
-	private void populateAnArray(int nrOfCities) {
-		this.randRoute = new int[nrOfCities];
-		for (int i = 0; i < nrOfCities; i++) {
-			randRoute[i] += i;
+	private void populateArray(int c) {
+		randomRoute = new int[c];
+		for (int i = 0; i < c; i++) {
+			randomRoute[i] += i;
 		}
 	}
 
 	// Shuffle the array using the Fisher-Yates Shuffle-algorithm
-	private void shuffleCities(int[] cities) {
-		int n = cities.length;
+	// (complexity O(n))
+	private void shuffleCities() {
+		int n = randomRoute.length;
 		Random r = new Random();
 
 		for (int i = n - 1; i > 0; i--) {
 			int j = r.nextInt(i + 1); // Pick a random index from 0 to i
 
 			// Swap cities[i] with the random index
-			int z = cities[i];
-			cities[i] = cities[j];
-			cities[j] = z;
+			int z = randomRoute[i];
+			randomRoute[i] = randomRoute[j];
+			randomRoute[j] = z;
 		}
 	}
 }
